@@ -17,10 +17,15 @@ fn main() {
 
 
     match validate_dir(&dir) {
-        Ok(expr) => fetch_files(&dir),
+        Ok(expr) => {
+            let files = fetch_files(&dir);
+            for file in files {
+                read_file(file);
+            }
+        },
         Err(err) => {
             println!("Please ensure your directory is set up correctly and retry the program.");
-        }
+        },
     }
 }
 
